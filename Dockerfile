@@ -12,7 +12,7 @@ WORKDIR /app
 COPY "./target/Ejemplo1-1.jar" "app.jar"
 
 # Exponer el puerto en el que correrá tu aplicación (asegúrate que coincida con el de tu aplicación)
-EXPOSE 8090
+EXPOSE 8080
 
 # Comando para ejecutar la aplicación
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
