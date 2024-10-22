@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Club</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Libre Baskerville', serif;
+		
+					
+					  background-color: rgb(128, 128, 255);
+					  
+	
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+
+    <main class="bg-gray-800 text-teal-300 p-8 rounded-lg shadow-lg w-full max-w-md">
+
+        <h1 class="text-center text-3xl font-bold mb-6 text-white">Ingresar Club</h1>
+        <h2 class="text-center text-xl mb-6">Ingrese los datos del Club.</h2>
+
+        <form th:action="@{/clubes/save}" th:object="${club}" method="post" class="space-y-6">
+
+            <input type="hidden" th:field="*{id}" th:value="${club.id}" />
+
+            <div class="mb-4 relative">
+                <input type="text" th:field="*{nombre}" class="peer w-full border-b border-green-300 bg-transparent pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" placeholder="Nombre del Club" required>
+                <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="nombre">Nombre del Club</label>
+            </div>
+
+			<div class="mb-4 relative">
+			    <select th:field="*{entrenador}" class="peer w-full border-b border-green-300 bg-gray-800 text-white pt-4 pb-1.5 text-sm focus:border-green-500 focus:outline-none" required>
+			        <option th:each="entrenador : ${listaEntrenador}" th:value="${entrenador.id}" th:text="${entrenador.nombre}" class="bg-gray-700"></option>
+			    </select>
+			    <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="entrenador">Entrenador</label>
+			</div>
+
+			<div class="mb-4 relative">
+			    <select th:field="*{asociacion}" class="peer w-full border-b border-green-300 bg-gray-800 text-white pt-4 pb-1.5 text-sm focus:border-green-500 focus:outline-none" required>
+			        <option th:each="asociacion : ${listaAsociacion}" th:value="${asociacion.id}" th:text="${asociacion.nombre}" class="bg-gray-700"></option>
+			    </select>
+			    <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="asociacion">Asociación</label>
+			</div>
+
+
+            <div class="mb-4">
+                <label class="block text-sm text-white">Competiciones:</label>
+                <div th:each="competicion : ${listaCompeticion}">
+                    <div class="flex items-center">
+                        <input type="checkbox" th:id="'competicion_'+${competicion.id}" th:value="${competicion.id}" class="form-check-input mr-2">
+                        <label th:for="'competicion_'+${competicion.id}" th:text="${competicion.nombre}" class="text-white"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm text-white">Jugadores:</label>
+                <div th:each="jugador : ${listaJugador}">
+                    <div class="flex items-center">
+                        <input type="checkbox" th:id="'jugador_'+${jugador.id}" th:value="${jugador.id}" class="form-check-input mr-2">
+                        <label th:for="'jugador_'+${jugador.id}" th:text="${jugador.nombre + ' ' + jugador.apellido}" class="text-white"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <input type="submit" class="w-full mr-4 py-2 px-4 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 cursor-pointer" value="Enviar">
+                <input type="reset" class="w-full py-2 px-4 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-700 cursor-pointer" value="Restablecer">
+            </div>
+
+        </form>
+    </main>
+</body>
+
+</html>
+

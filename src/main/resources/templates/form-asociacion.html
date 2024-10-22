@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Asociación</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        body {
+			
+			  background-color: rgb(128, 128, 255);
+			  
+            font-family: 'Libre Baskerville', serif;
+        }
+    </style>
+</head>
+
+<body class=" flex items-center justify-center min-h-screen">
+
+    <main class="bg-gray-800 text-blue-100 p-8 rounded-lg shadow-lg w-full max-w-md">
+
+        <h1 class="text-center text-3xl font-bold mb-6">Ingresar Asociación</h1>
+        <h2 class="text-center text-xl mb-6">Ingrese los datos de la Asociación.</h2>
+
+        <form th:action="@{/asociaciones/save}" th:object="${asociacion}" method="post" class="space-y-6">
+
+            <input type="hidden" th:field="*{id}" th:value="${asociacion.id}" />
+
+            <div class="mb-4 relative">
+                <input type="text" th:field="*{nombre}" class="peer w-full border-b border-green-300 bg-transparent pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" placeholder="Nombre de la Asociación" required>
+                <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="nombre">Nombre de la Asociación</label>
+            </div>
+
+			<div class="mb-4 relative">
+			    <select th:field="*{pais}" class="peer w-full border-b border-green-300 bg-gray-800 pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" required>
+			        <option value="" disabled selected>Seleccione un país...</option>
+			        <option value="Argentina">Argentina</option>
+			        <option value="Colombia">Colombia</option>
+			        <option value="Brasil">Brasil</option>
+			        <option value="Chile">Chile</option>
+			        <option value="México">México</option>
+			        <option value="Perú">Perú</option>
+			        <option value="Venezuela">Venezuela</option>
+			        <option value="Ecuador">Ecuador</option>
+			        <option value="Uruguay">Uruguay</option>
+			        <option value="Bolivia">Bolivia</option>
+			    </select>
+			    <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="pais">País</label>
+			</div>
+
+            <div class="mb-4 relative">
+                <input type="text" th:field="*{presidente}" class="peer w-full border-b border-green-300 bg-transparent pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" placeholder="Nombre del Presidente" required>
+                <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="presidente">Nombre del Presidente</label>
+            </div>
+
+            <div class="flex justify-between">
+                <input type="submit" class="w-full mr-4 py-2 px-4 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 cursor-pointer" value="Enviar">
+                <input type="reset" class="w-full py-2 px-4 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-700 cursor-pointer" value="Restablecer">
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>
