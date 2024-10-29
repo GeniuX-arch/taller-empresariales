@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html">
+    <title>Entrenadores Registrados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        body {
+            background-color: rgb(128, 128, 255);
+        }
+        .container {
+            background-color: #343a40;
+            border-radius: 10px;
+            padding: 2rem;
+        }
+        h2.section__title {
+            color: rgb(255, 255, 128);
+            text-align: center;
+        }
+        table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .btn-outline-primary, .btn-outline-success {
+            margin: 0.5rem;
+        }
+        .btn-info, .btn-danger {
+            margin-right: 0.5rem;
+        }
+        /* Centering content horizontally */
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center-content">
+        <div class="container p-4">
+            <h2 class="section__title text-white bold">Lista de Entrenadores</h2><br><br>
+            <table class="table table-dark table-hover"> 
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Nacionalidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <tr th:each="entrenador: ${listaEntrenador}">
+                        <td th:text="${entrenador.id}"></td>
+                        <td th:text="${entrenador.nombre}"> </td>
+                        <td th:text="${entrenador.apellido}"> </td>
+                        <td th:text="${entrenador.edad}"> </td>
+                        <td th:text="${entrenador.nacionalidad}"> </td>
+                        <td>
+                            <a class="btn btn-info btn-xs" th:href="@{'/entrenadores/edit'+ '/' + ${entrenador.id}}" th:text="'Editar'"></a>
+                            <a class="btn btn-danger btn-xs" th:href="@{'/entrenadores/delete'+ '/' + ${entrenador.id}}" th:text="'Eliminar'"></a>
+                        </td>    
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                <a th:href="@{/entrenadores/new}" class="btn btn-outline-primary">Insertar Entrenador</a>
+                <a th:href="@{/}" class="btn btn-outline-success">Inicio</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

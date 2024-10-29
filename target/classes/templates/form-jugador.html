@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Jugador</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+		body {
+		            font-family: 'Libre Baskerville', serif;
+				
+							
+				background-color: rgb(128, 128, 255);
+							  
+			
+		        }
+    </style>
+</head>
+
+<body class=" flex items-center justify-center min-h-screen">
+
+    <main class="bg-gray-800 text-teal-300 p-8 rounded-lg shadow-lg w-full max-w-md">
+
+        <h1 class="text-center text-3xl font-bold mb-6 text-white">Ingresar Jugador</h1>
+        <h2 class="text-center text-xl mb-6">Ingrese los datos del Jugador.</h2>
+
+        <form th:action="@{/jugadores/save}" th:object="${jugador}" method="post" class="space-y-6">
+
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-4 relative">
+                <input type="text" th:field="*{nombre}" class="peer w-full border-b border-green-300 bg-transparent pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" placeholder="Nombre del Jugador" required>
+                <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="nombre">Nombre del Jugador</label>
+            </div>
+
+            <div class="mb-4 relative">
+                <input type="text" th:field="*{apellido}" class="peer w-full border-b border-green-300 bg-transparent pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" placeholder="Apellido del Jugador" required>
+                <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="apellido">Apellido del Jugador</label>
+            </div>
+
+            <div class="mb-4 relative">
+                <input type="number" th:field="*{numero}" class="peer w-full border-b border-green-300 bg-transparent pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" placeholder="Número del Jugador" required>
+                <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="numero">Número del Jugador</label>
+            </div>
+
+			<div class="mb-4 relative">
+			    <select th:field="*{posicion}" class="peer w-full border-b border-green-300 bg-gray-800 pt-4 pb-1.5 text-sm text-white placeholder-transparent focus:border-green-500 focus:outline-none" required>
+			        <option value="">Seleccione una posición</option>
+			        <option value="Portero">Portero</option>
+			        <option value="Defensa">Defensa</option>
+			        <option value="Centrocampista">Centrocampista</option>
+			        <option value="Delantero">Delantero</option>
+			    </select>
+			    <label class="absolute left-0 -top-2 text-green-500 text-xs transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:-top-2 peer-focus:text-xs" for="posicion">Posición</label>
+			</div>
+
+
+            <div class="flex justify-between">
+                <input type="submit" class="w-full mr-4 py-2 px-4 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 cursor-pointer" value="Enviar">
+                <input type="reset" class="w-full py-2 px-4 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-700 cursor-pointer" value="Restablecer">
+            </div>
+
+        </form>
+    </main>
+</body>
+
+</html>
